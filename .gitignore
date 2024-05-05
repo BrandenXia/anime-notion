@@ -1,0 +1,12 @@
+# node
+node_modules
+
+# env
+.env
+
+# file system
+.DS_Store
+
+# editor
+.vscode
+.idea
