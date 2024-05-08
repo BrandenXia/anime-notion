@@ -1,10 +1,14 @@
-import create from "@/db/create";
-import createClient from "@/client";
+import createBangumiClient from "@/bangumi";
 
 const main = async () => {
-  const client = createClient();
+  const bangumi = createBangumiClient();
+  const a = await bangumi.search({
+    pathParam: { keywords: "No game no life" },
+    queryParam: { type: 6 },
+    reqBody: {},
+  });
 
-  await create(client, "37b9a2f2c5814cf982375effe4dbd8d8");
+  console.log(a);
 };
 
 main()
