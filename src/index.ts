@@ -15,7 +15,7 @@ program
     new Argument("[title]", "The title of the database").default("番剧"),
   )
   .action(async (parentId, title) => {
-    const { default: createDb } = await import("@/create.ts");
+    const { default: createDb } = await import("@/commands/create.ts");
 
     await createDb(parentId, title);
   });
@@ -28,7 +28,7 @@ program
   )
   .addArgument(new Argument("<file>", "The file to import"))
   .action(async (type, file) => {
-    const { default: importToDb } = await import("@/import.ts");
+    const { default: importToDb } = await import("@/commands/import.ts");
 
     await importToDb(type, file);
   });

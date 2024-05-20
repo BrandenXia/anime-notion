@@ -1,4 +1,4 @@
-import properties from "./notion/properties.ts";
+import properties from "../notion/properties.ts";
 import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env.ts";
 import { varToString } from "@/utils";
