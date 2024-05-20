@@ -21,6 +21,8 @@ const properties: CreateDatabaseParameters["properties"] = {
       ],
     },
   },
+  synced: { checkbox: {} },
+  id: { number: {} },
 };
 
 export default properties;

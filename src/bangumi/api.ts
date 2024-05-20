@@ -1,15 +1,8 @@
-export type StrMap = Record<string, unknown>;
-
-export type EndpointType<
-  ResBody extends StrMap = StrMap,
-  PathParam extends StrMap = StrMap,
-  QueryParam extends StrMap = StrMap,
-  ReqBody extends StrMap = StrMap,
-> = [method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH", path: string];
+import type { Endpoint } from "endpoint-ts";
 
 export const baseUrl = "https://api.bgm.tv";
 
-enum BangumiSubjectTypeType {
+export enum BangumiSubjectTypeType {
   Book = 1,
   Anime,
   Music,
@@ -17,41 +10,38 @@ enum BangumiSubjectTypeType {
   Real = 6,
 }
 
-enum BangumiCollectionTypeType {
+export enum BangumiCollectionTypeType {
   Wish = 1,
   Collect,
-  Do,
+  Done,
   OnHold,
   Dropped,
 }
 
-type BangumiSubjectType = {
+export type BangumiSubjectType = {
   id: number;
-  url: string;
   type: BangumiSubjectTypeType;
   name: string;
   name_cn: string;
   summary: string;
-  air_date: string;
-  air_weekday: number;
-  images: {
-    large: string;
-    common: string;
-    medium: string;
-    small: string;
-    grid: string;
-  };
+  image: string;
+  tags: { name: string; count: number }[];
+  score: number;
+  rank: number;
 };
 
-export const search: EndpointType<
-  { results: number; list: BangumiSubjectType[] },
-  { keywords: string },
-  { type: BangumiSubjectTypeType }
-> = ["GET", "/search/subject/{keywords}"];
+export const search: Endpoint<{
+  body: { keyword: string };
+  response: {
+    total: number;
+    limit: number;
+    offset: number;
+    data: BangumiSubjectType[];
+  };
+  query: { limit?: number; offset?: number };
+}> = ["POST", "/v0/search/subjects"];
 
-export const addCollection: EndpointType<
-  {},
-  { subject_id: number },
-  {},
-  { type: BangumiCollectionTypeType }
-> = ["POST", "/v0/users/-/collections/{subject_id}"];
+export const addCollection: Endpoint<{
+  pathParam: { subject_id: number };
+  body: { type: BangumiCollectionTypeType };
+}> = ["POST", "/v0/users/-/collections/{subject_id}"];

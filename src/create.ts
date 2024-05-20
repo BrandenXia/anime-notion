@@ -1,13 +1,13 @@
-import { Client } from "@notionhq/client";
-import properties from "./properties.ts";
+import properties from "./notion/properties.ts";
 import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env.ts";
 import { varToString } from "@/utils";
+import { notion } from "@/clients.ts";
 
-const createDb = async (client: Client, parentId: string) => {
+const createDb = async (parentId: string, title: string) => {
   consola.start("Creating database...");
 
-  const db = await client.databases.create({
+  const db = await notion.databases.create({
     parent: {
       type: "page_id",
       page_id: parentId,
@@ -16,7 +16,7 @@ const createDb = async (client: Client, parentId: string) => {
       type: "external",
       external: { url: "https://www.notion.so/icons/tv_blue.svg" },
     },
-    title: [{ type: "text", text: { content: "番剧" } }],
+    title: [{ type: "text", text: { content: title } }],
     properties: properties,
   });
 
