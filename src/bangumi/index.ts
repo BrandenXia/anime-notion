@@ -1,4 +1,4 @@
-import { BANGUMI_TOKEN } from "@/env.ts";
+import { BANGUMI_TOKEN } from "@/env";
 import { addCollection, baseUrl, search } from "./api";
 import { createClient } from "endpoint-ts";
 

@@ -1,6 +1,6 @@
 import consola from "consola";
-import { NOTION_PAGE_ID } from "@/env.ts";
-import { notion } from "@/clients.ts";
+import { NOTION_PAGE_ID } from "@/env";
+import { notion } from "@/clients";
 
 const addToDb = async (
   {

@@ -1,8 +1,9 @@
-import properties from "../notion/properties.ts";
+import properties from "@/notion/properties";
 import consola from "consola";
-import { NOTION_PAGE_ID } from "@/env.ts";
+import { NOTION_PAGE_ID } from "@/env";
 import { varToString } from "@/utils";
-import { notion } from "@/clients.ts";
+import { notion } from "@/clients";
+import { Argument, Command } from "commander";
 
 const createDb = async (parentId: string, title: string) => {
   consola.start("Creating database...");
@@ -27,4 +28,12 @@ const createDb = async (parentId: string, title: string) => {
   consola.info(`Command line:\necho '${envMsg}' >> .env`);
 };
 
-export default createDb;
+const createCmd = new Command("create")
+  .description("Create a new database in Notion")
+  .addArgument(new Argument("<parentId>", "The ID of the parent page"))
+  .addArgument(
+    new Argument("[title]", "The title of the database").default("番剧"),
+  )
+  .action(async (parentId, title) => await createDb(parentId, title));
+
+export default createCmd;

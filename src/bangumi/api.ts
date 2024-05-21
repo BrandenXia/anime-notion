@@ -31,7 +31,12 @@ export type BangumiSubjectType = {
 };
 
 export const search: Endpoint<{
-  body: { keyword: string };
+  body: {
+    keyword: string;
+    filter?: {
+      type?: BangumiSubjectTypeType[];
+    };
+  };
   response: {
     total: number;
     limit: number;

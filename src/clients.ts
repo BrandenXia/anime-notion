@@ -1,4 +1,4 @@
-import createNotionClient from "@/notion/client.ts";
+import createNotionClient from "@/notion/client";
 import createBangumiClient from "@/bangumi";
 
 export const notion = createNotionClient();
