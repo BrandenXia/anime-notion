@@ -1,6 +1,6 @@
 import { Option } from "commander";
 import { enumKeys } from "@/utils";
-import { BangumiSubjectTypeType } from "@/bangumi/api.ts";
+import { BangumiSubjectTypeType } from "@/bangumi/api";
 
 export const subjectTypeOption = new Option(
   "-s, --subject-type [subjectTypes...]",
