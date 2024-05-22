@@ -1,7 +1,7 @@
 import consola from "consola";
 import { BangumiSubjectTypeType } from "@/bangumi/api";
 import { Argument, Command } from "commander";
-import { limitOption, subjectTypeOption } from "@/options";
+import { limitOption, oldSearchOption, subjectTypeOption } from "@/options";
 import { addItem } from "@/commands/add";
 
 const importText = async (
@@ -24,11 +24,13 @@ const importToDb = async (
   path: string,
   limit: number,
   subjectTypes: BangumiSubjectTypeType[],
+  oldSearch: boolean,
 ) => {
   const add = addItem
     .bind(null, limit)
     .bind(null, subjectTypes)
-    .bind(null, "Completed");
+    .bind(null, "Completed")
+    .bind(null, oldSearch);
 
   switch (type) {
     case "text":
@@ -47,9 +49,10 @@ const importCmd = new Command("import")
   .addArgument(new Argument("<file>", "The file to import"))
   .addOption(limitOption)
   .addOption(subjectTypeOption)
+  .addOption(oldSearchOption)
   .action(
-    async (type, file, { limit, subjectType }) =>
-      await importToDb(type, file, limit, subjectType),
+    async (type, file, { limit, subjectType, oldSearch }) =>
+      await importToDb(type, file, limit, subjectType, oldSearch),
   );
 
 export default importCmd;

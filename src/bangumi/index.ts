@@ -1,5 +1,5 @@
 import { BANGUMI_TOKEN } from "@/env";
-import { addCollection, baseUrl, search } from "./api";
+import { addCollection, baseUrl, search, searchOld } from "./api";
 import { createClient } from "endpoint-ts";
 
 const createBangumiClient = () =>
@@ -8,7 +8,7 @@ const createBangumiClient = () =>
       baseUrl,
       headers: { Authorization: `Bearer ${BANGUMI_TOKEN}` },
     },
-    { addCollection, search },
+    { addCollection, search, searchOld },
   );
 
 export default createBangumiClient;

@@ -6,10 +6,10 @@ const subjectTypeMapper = async (type: BangumiSubjectTypeType) => {
     case BangumiSubjectTypeType.Anime:
       return "Anime";
     case BangumiSubjectTypeType.Book:
-      return await consola.prompt("Is this comic or light novel?", {
+      return (await consola.prompt("Is this comic or light novel?", {
         type: "select",
         options: ["Comic", "Light Novel"],
-      }) as "Comic" | "Light Novel";
+      })) as "Comic" | "Light Novel";
     case BangumiSubjectTypeType.Game:
       return "Visual Novel";
     default:

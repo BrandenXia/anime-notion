@@ -30,6 +30,35 @@ export type BangumiSubjectType = {
   rank: number;
 };
 
+export type BangumiLegacySubjectType = {
+  id: number;
+  url: string;
+  type: BangumiSubjectTypeType;
+  name: string;
+  name_cn: string;
+  summary: string;
+  air_date: string;
+  air_weekday: number;
+  images: {
+    large: string;
+    common: string;
+    medium: string;
+    small: string;
+    grid: string;
+  };
+  eps: number;
+  eps_count: number;
+};
+
+export const searchOld: Endpoint<{
+  pathParam: { keywords: string };
+  query: { type?: BangumiSubjectTypeType };
+  response: {
+    results: number;
+    list: BangumiLegacySubjectType[];
+  };
+}> = ["GET", "/search/subject/{keywords}"];
+
 export const search: Endpoint<{
   body: {
     keyword: string;

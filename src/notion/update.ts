@@ -2,17 +2,20 @@ import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env";
 import { notion } from "@/clients";
 import { baseUrl } from "@/bangumi/api";
+import { toHttps } from "@/utils";
 
 const addToDb = async ({
   id,
   name,
   status,
   type,
+  cover,
 }: {
   id: number;
   name: string;
   status: "Not Started" | "In Progress" | "Completed";
   type: "Anime" | "Comic" | "Light Novel" | "Visual Novel";
+  cover: string;
 }) => {
   consola.info(`Adding ${name} to database`);
 
@@ -20,9 +23,7 @@ const addToDb = async ({
     parent: { database_id: NOTION_PAGE_ID },
     cover: {
       type: "external",
-      external: {
-        url: `${baseUrl}/v0/subjects/${id}/image?type=large`,
-      },
+      external: { url: toHttps(cover) },
     },
     properties: {
       Name: { title: [{ type: "text", text: { content: name } }] },

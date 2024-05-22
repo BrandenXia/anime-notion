@@ -27,3 +27,8 @@ export const statusOption = new Option(
 )
   .choices(["Not Started", "In Progress", "Completed"])
   .default("Not Started");
+
+export const oldSearchOption = new Option(
+  "-o, --old-search",
+  "Use the old search API",
+);
