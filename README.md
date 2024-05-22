@@ -1,7 +1,9 @@
 # anime-notion
 
+<p>
 <img alt="Gallery View" src="./docs/gallery.png" width="45%"/>
 <img alt="Table View" src="./docs/table.png" width="45%"/>
+</p>
 
 Command line tool for keeping track of anime, comics, light novel, and visual novel in Notion.
 
