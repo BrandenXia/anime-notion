@@ -1,7 +1,6 @@
 import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env";
 import { notion } from "@/clients";
-import { baseUrl } from "@/bangumi/api";
 import { toHttps } from "@/utils";
 
 const addToDb = async ({

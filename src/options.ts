@@ -30,5 +30,5 @@ export const statusOption = new Option(
 
 export const oldSearchOption = new Option(
   "-o, --old-search",
-  "Use the old search API",
+  "Use the old search API, note that the old API doesn't support searching with multiple subject types, only the first type passed will be used",
 );
