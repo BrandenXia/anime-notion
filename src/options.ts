@@ -20,3 +20,10 @@ export const limitOption = new Option(
 )
   .default(15)
   .argParser((val) => parseInt(val, 10));
+
+export const statusOption = new Option(
+  "-t, --status [status]",
+  "The status of the item",
+)
+  .choices(["Not Started", "In Progress", "Completed"])
+  .default("Not Started");

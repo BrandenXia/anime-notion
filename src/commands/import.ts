@@ -25,7 +25,10 @@ const importToDb = async (
   limit: number,
   subjectTypes: BangumiSubjectTypeType[],
 ) => {
-  const add = addItem.bind(null, limit).bind(null, subjectTypes);
+  const add = addItem
+    .bind(null, limit)
+    .bind(null, subjectTypes)
+    .bind(null, "Completed");
 
   switch (type) {
     case "text":

@@ -1,22 +1,26 @@
 import { BangumiSubjectTypeType } from "@/bangumi/api";
 import { bangumi } from "@/clients";
-import { enumToString } from "@/utils";
+import { enumToString, subjectTypeMapper } from "@/utils";
 import consola from "consola";
 import addToDb from "@/notion/update";
 import { Command } from "commander";
-import { limitOption, subjectTypeOption } from "@/options";
+import { limitOption, statusOption, subjectTypeOption } from "@/options";
 
 const addItem = async (
   limit: number,
   subjectTypes: BangumiSubjectTypeType[],
+  status: "Not Started" | "In Progress" | "Completed",
   item: string,
 ) => {
   const res = await bangumi.search({
     body: {
       keyword: item,
-      filter: { type: subjectTypes.length > 0 ? subjectTypes : undefined },
+      filter: {
+        type: subjectTypes.length > 0 ? subjectTypes : undefined,
+        nsfw: true,
+      },
     },
-    query: { limit: limit },
+    query: { limit },
   });
 
   const items = res.data.map((item) => ({
@@ -47,8 +51,8 @@ const addItem = async (
     await addToDb({
       id: item.id,
       name: item.name,
-      status: "Completed",
-      type: "Anime",
+      status: status,
+      type: await subjectTypeMapper(item.type),
     });
   }
 };
@@ -57,10 +61,11 @@ const addCmd = new Command("add")
   .description("Add items to Notion")
   .addOption(limitOption)
   .addOption(subjectTypeOption)
+  .addOption(statusOption)
   .arguments("<item>")
   .action(
-    async (item, { limit, subjectType }) =>
-      await addItem(limit, subjectType, item),
+    async (item, { limit, subjectType, status }) =>
+      await addItem(limit, subjectType, status, item),
   );
 
 export { addItem };

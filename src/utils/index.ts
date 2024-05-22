@@ -5,3 +5,5 @@ export const enumToString = (enumObj: any, value: any) =>
 
 export const enumKeys = (enumObj: any) =>
   Object.keys(enumObj).filter((key) => isNaN(Number(key)));
+
+export * from "./typeMap";

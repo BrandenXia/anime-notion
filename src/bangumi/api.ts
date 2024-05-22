@@ -35,6 +35,7 @@ export const search: Endpoint<{
     keyword: string;
     filter?: {
       type?: BangumiSubjectTypeType[];
+      nsfw?: boolean;
     };
   };
   response: {
