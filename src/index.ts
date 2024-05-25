@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { Command } from "commander";
+import { Command } from "@commander-js/extra-typings";
 import createCmd from "@/commands/create";
 import importCmd from "@/commands/import";
 import addCmd from "@/commands/add";

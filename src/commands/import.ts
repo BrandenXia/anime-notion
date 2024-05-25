@@ -1,6 +1,6 @@
 import consola from "consola";
 import { BangumiSubjectTypeType } from "@/bangumi/api";
-import { Argument, Command } from "commander";
+import { Argument, Command } from "@commander-js/extra-typings";
 import { limitOption, oldSearchOption, subjectTypeOption } from "@/options";
 import { addItem } from "@/commands/add";
 
@@ -44,7 +44,7 @@ const importToDb = async (
 const importCmd = new Command("import")
   .description("Import data to Notion")
   .addArgument(
-    new Argument("<type>", "The type of data to import").choices(["text"]),
+    new Argument("<type>", "The type of data to import").choices(["text"] as const),
   )
   .addArgument(new Argument("<file>", "The file to import"))
   .addOption(limitOption)

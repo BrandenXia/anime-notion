@@ -3,7 +3,7 @@ import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env";
 import { varToString } from "@/utils";
 import { notion } from "@/clients";
-import { Argument, Command } from "commander";
+import { Argument, Command } from "@commander-js/extra-typings";
 
 const createDb = async (parentId: string, title: string) => {
   consola.start("Creating database...");
