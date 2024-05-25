@@ -8,7 +8,6 @@ import { bangumi } from "@/clients";
 import { enumToString, subjectTypeMapper } from "@/utils";
 import consola from "consola";
 import addToDb from "@/notion/update";
-import { Command } from "@commander-js/extra-typings";
 import {
   limitOption,
   oldSearchOption,
