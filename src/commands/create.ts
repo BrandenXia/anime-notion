@@ -4,6 +4,7 @@ import { NOTION_PAGE_ID } from "@/env";
 import { varToString } from "@/utils";
 import { notion } from "@/clients";
 import { Argument, Command } from "@commander-js/extra-typings";
+import { InteractiveCommand } from "interactive-commander";
 
 const createDb = async (parentId: string, title: string) => {
   consola.start("Creating database...");
@@ -28,7 +29,7 @@ const createDb = async (parentId: string, title: string) => {
   consola.info(`Command line:\necho '${envMsg}' >> .env`);
 };
 
-const createCmd = new Command("create")
+const createCmd = new InteractiveCommand("create")
   .description("Create a new database in Notion")
   .addArgument(new Argument("<parentId>", "The ID of the parent page"))
   .addArgument(

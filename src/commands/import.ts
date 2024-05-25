@@ -1,8 +1,9 @@
 import consola from "consola";
 import { BangumiSubjectTypeType } from "@/bangumi/api";
-import { Argument, Command } from "@commander-js/extra-typings";
+import { Argument } from "@commander-js/extra-typings";
 import { limitOption, oldSearchOption, subjectTypeOption } from "@/options";
 import { addItem } from "@/commands/add";
+import { InteractiveCommand } from "interactive-commander";
 
 const importText = async (
   add: (item: string) => Promise<void>,
@@ -41,7 +42,7 @@ const importToDb = async (
   }
 };
 
-const importCmd = new Command("import")
+const importCmd = new InteractiveCommand("import")
   .description("Import data to Notion")
   .addArgument(
     new Argument("<type>", "The type of data to import").choices(["text"] as const),

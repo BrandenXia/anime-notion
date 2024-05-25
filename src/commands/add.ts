@@ -15,6 +15,7 @@ import {
   statusOption,
   subjectTypeOption,
 } from "@/options";
+import { InteractiveCommand } from "interactive-commander";
 
 const addItem = async (
   limit: number,
@@ -57,13 +58,11 @@ const addItem = async (
     {} as Record<string, (typeof data)[number]>,
   );
 
-  const ans = (await consola.prompt("Select items to add:", {
+  const itemsToAdd = ((await consola.prompt("Select items to add:", {
     required: false,
     type: "multiselect",
     options: items,
-  })) as unknown as string[];
-
-  const itemsToAdd = ans.map((item) => values[item]);
+  })) as unknown as string[]).map((item) => values[item]);
 
   consola.info(
     `Adding items: ${itemsToAdd.map((item) => item.name).join(", ")}`,
@@ -82,7 +81,7 @@ const addItem = async (
   }
 };
 
-const addCmd = new Command("add")
+const addCmd = new InteractiveCommand("add")
   .description("Add items to Notion")
   .addOption(limitOption)
   .addOption(subjectTypeOption)
