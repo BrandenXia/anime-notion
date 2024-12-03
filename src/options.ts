@@ -18,6 +18,7 @@ export const subjectTypeOption = new InteractiveOption(
   .prompt(async () => {
     return (
       await consola.prompt("Select the type of subject(s)", {
+        required: false,
         type: "multiselect",
         options: enumKeys(BangumiSubjectTypeType),
       })
