@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^13.0.0",
-    "@notionhq/client": "^2.2.15",
+    "@notionhq/client": "^3.0.0",
     "commander": "^13.0.0",
     "consola": "^3.2.3",
     "endpoint-ts": "^1.0.1",
