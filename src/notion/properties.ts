@@ -1,6 +1,10 @@
 import type { CreateDatabaseParameters } from "@notionhq/client/build/src/api-endpoints";
 
-const properties: CreateDatabaseParameters["properties"] = {
+type Properties = NonNullable<
+  CreateDatabaseParameters["initial_data_source"]
+>["properties"];
+
+const properties: Properties = {
   Name: { title: {} },
   Status: {
     select: {

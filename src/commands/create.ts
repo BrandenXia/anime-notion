@@ -3,7 +3,7 @@ import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env";
 import { varToString } from "@/utils";
 import { notion } from "@/clients";
-import { Argument, Command } from "@commander-js/extra-typings";
+import { Argument } from "@commander-js/extra-typings";
 import { InteractiveCommand } from "interactive-commander";
 
 const createDb = async (parentId: string, title: string) => {
@@ -19,7 +19,7 @@ const createDb = async (parentId: string, title: string) => {
       external: { url: "https://www.notion.so/icons/tv_blue.svg" },
     },
     title: [{ type: "text", text: { content: title } }],
-    properties: properties,
+    initial_data_source: { properties },
   });
 
   const envMsg = `${varToString({ NOTION_PAGE_ID })}="${db.id}"`;
