@@ -12,8 +12,8 @@ export enum BangumiSubjectTypeType {
 
 export enum BangumiCollectionTypeType {
   Wish = 1,
-  Collect,
   Done,
+  InProgress,
   OnHold,
   Dropped,
 }

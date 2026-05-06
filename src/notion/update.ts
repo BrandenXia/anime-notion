@@ -1,7 +1,7 @@
 import consola from "consola";
 import { NOTION_PAGE_ID } from "@/env";
-import { notion } from "@/clients";
-import { toHttps } from "@/utils";
+import { bangumi, notion } from "@/clients";
+import { toBangumiStatus, toHttps } from "@/utils";
 
 const addToDb = async ({
   id,
@@ -30,6 +30,11 @@ const addToDb = async ({
       Type: { select: { name: type } },
       Id: { number: id },
     },
+  });
+
+  await bangumi.addCollection({
+    body: { type: toBangumiStatus(status) },
+    pathParam: { subject_id: id },
   });
 
   consola.success(`Added ${name} to database`);

@@ -6,7 +6,10 @@ const createBangumiClient = () =>
   createClient(
     {
       baseUrl,
-      headers: { Authorization: `Bearer ${BANGUMI_TOKEN}` },
+      headers: {
+        Authorization: `Bearer ${BANGUMI_TOKEN}`,
+        "content-type": "application/json",
+      },
     },
     { addCollection, search, searchOld },
   );
